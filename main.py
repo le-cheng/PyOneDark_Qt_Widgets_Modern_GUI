@@ -161,7 +161,6 @@ class MainWindow(QMainWindow):
                 )
         
         # TITLE BAR MENU
-        # ///////////////////////////////////////////////////////////////
         
         # SETTINGS TITLE BAR
         if btn.objectName() == "btn_top_settings":
@@ -187,7 +186,6 @@ class MainWindow(QMainWindow):
     # LEFT MENU BTN IS RELEASED
     # Run function when btn is released
     # Check funtion by object name / btn_id
-    # ///////////////////////////////////////////////////////////////
     def btn_released(self):
         # GET BT CLICKED
         btn = SetupMainWindow.setup_btns(self)
@@ -196,12 +194,10 @@ class MainWindow(QMainWindow):
         print(f"Button {btn.objectName()}, released!")
 
     # RESIZE EVENT
-    # ///////////////////////////////////////////////////////////////
     def resizeEvent(self, event):
         SetupMainWindow.resize_grips(self)
 
     # MOUSE CLICK EVENTS
-    # ///////////////////////////////////////////////////////////////
     def mousePressEvent(self, event):
         # SET DRAG POS WINDOW
         self.dragPos = event.globalPos()
@@ -209,14 +205,12 @@ class MainWindow(QMainWindow):
 
 # SETTINGS WHEN TO START
 # Set the initial class and also additional parameters of the "QApplication" class
-# ///////////////////////////////////////////////////////////////
+
 if __name__ == "__main__":
     # APPLICATION
-    # ///////////////////////////////////////////////////////////////
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon("icon.ico"))
     window = MainWindow()
 
-    # EXEC APP
-    # ///////////////////////////////////////////////////////////////
-    sys.exit(app.exec_())
+    # EXEC APP               
+    sys.exit(app.exec())
