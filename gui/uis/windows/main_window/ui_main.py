@@ -20,7 +20,7 @@ from gui.core.functions import Functions
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import *
+from qt_core import QWidget, QVBoxLayout, QFrame, QHBoxLayout
 
 # IMPORT SETTINGS
 # ///////////////////////////////////////////////////////////////
@@ -32,11 +32,11 @@ from gui.core.json_themes import Themes
 
 # IMPORT PY ONE DARK WIDGETS
 # ///////////////////////////////////////////////////////////////
-from gui.widgets import *
+from gui.widgets import PyWindow, PyLeftMenu, PyLeftColumn, PyTitleBar
 
 # IMPORT SETUP MAIN WINDOW
 # ///////////////////////////////////////////////////////////////
-from . setup_main_window import *
+# from . setup_main_window import *
 
 # IMPORT MAIN WINDOW PAGES / AND SIDE BOXES FOR APP
 # ///////////////////////////////////////////////////////////////

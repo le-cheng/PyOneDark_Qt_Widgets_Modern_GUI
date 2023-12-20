@@ -12,33 +12,26 @@
 # commercially, I recommend reading them on the official website:
 # https://doc.qt.io/qtforpython/licenses.html
 #
-# ///////////////////////////////////////////////////////////////
 
 # IMPORT PACKAGES AND MODULES
-# ///////////////////////////////////////////////////////////////
-from gui.uis.windows.main_window.functions_main_window import *
+# from gui.uis.windows.main_window.functions_main_window import *
+# from gui.uis.windows.main_window.ui_main import UI_MainWindow
 import sys
 import os
-
 # IMPORT QT CORE
-# ///////////////////////////////////////////////////////////////
-from qt_core import *
-
+from qt_core import QMainWindow, QApplication, QIcon
 # IMPORT SETTINGS
-# ///////////////////////////////////////////////////////////////
 from gui.core.json_settings import Settings
 
 # IMPORT PY ONE DARK WINDOWS
-# ///////////////////////////////////////////////////////////////
 # MAIN WINDOW
-from gui.uis.windows.main_window import *
+from gui.uis.windows.main_window import UI_MainWindow, SetupMainWindow, MainFunctions
 
 # IMPORT PY ONE DARK WIDGETS
-# ///////////////////////////////////////////////////////////////
-from gui.widgets import *
+# from gui.widgets import *
+from gui.core.functions import Functions
 
 # ADJUST QT FONT DPI FOR HIGHT SCALE AN 4K MONITOR
-# ///////////////////////////////////////////////////////////////
 os.environ["QT_FONT_DPI"] = "96"
 # IF IS 4K MONITOR ENABLE 'os.environ["QT_SCALE_FACTOR"] = "2"'
 
@@ -71,7 +64,6 @@ class MainWindow(QMainWindow):
     # LEFT MENU BTN IS CLICKED
     # Run function when btn is clicked
     # Check funtion by object name / btn_id
-    # ///////////////////////////////////////////////////////////////
     def btn_clicked(self):
         # GET BT CLICKED
         btn = SetupMainWindow.setup_btns(self)
@@ -200,7 +192,7 @@ class MainWindow(QMainWindow):
     # MOUSE CLICK EVENTS
     def mousePressEvent(self, event):
         # SET DRAG POS WINDOW
-        self.dragPos = event.globalPos()
+        self.dragPos = event.globalPosition().toPoint() # 鼠标点击并拖动
 
 
 # SETTINGS WHEN TO START

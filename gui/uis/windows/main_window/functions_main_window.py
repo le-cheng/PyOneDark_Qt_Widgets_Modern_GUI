@@ -20,7 +20,7 @@ import sys
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import *
+from qt_core import QPushButton, QPropertyAnimation, QEasingCurve, QParallelAnimationGroup
 
 # LOAD UI MAIN
 # ///////////////////////////////////////////////////////////////
