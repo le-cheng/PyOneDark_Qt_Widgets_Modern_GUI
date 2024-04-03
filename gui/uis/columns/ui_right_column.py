@@ -16,7 +16,10 @@
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import *
+# from qt_core import *
+from PySide6.QtWidgets import QVBoxLayout, QStackedWidget, QWidget, QLabel, QLabel
+from PySide6.QtCore import Qt, QSize, QMetaObject, QCoreApplication
+from PySide6.QtGui import QFont
 
 
 class Ui_RightColumn(object):

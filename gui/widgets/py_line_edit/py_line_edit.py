@@ -16,7 +16,9 @@
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import *
+# from qt_core import *
+from PySide6.QtWidgets import QLineEdit
+
 
 # STYLE
 # ///////////////////////////////////////////////////////////////
@@ -41,7 +43,7 @@ QLineEdit:focus {{
 # ///////////////////////////////////////////////////////////////
 class PyLineEdit(QLineEdit):
     def __init__(
-        self, 
+        self,
         text = "",
         place_holder_text = "",
         radius = 8,
@@ -85,7 +87,7 @@ class PyLineEdit(QLineEdit):
         # APPLY STYLESHEET
         style_format = style.format(
             _radius = radius,
-            _border_size = border_size,           
+            _border_size = border_size,
             _color = color,
             _selection_color = selection_color,
             _bg_color = bg_color,

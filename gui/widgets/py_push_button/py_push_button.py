@@ -16,7 +16,10 @@
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import *
+# from qt_core import *
+from PySide6.QtWidgets import QPushButton
+from PySide6.QtCore import Qt
+
 
 # STYLE
 # ///////////////////////////////////////////////////////////////
@@ -26,13 +29,13 @@ QPushButton {{
     padding-left: 10px;
     padding-right: 5px;
     color: {_color};
-	border-radius: {_radius};	
+	border-radius: {_radius};
 	background-color: {_bg_color};
 }}
 QPushButton:hover {{
 	background-color: {_bg_color_hover};
 }}
-QPushButton:pressed {{	
+QPushButton:pressed {{
 	background-color: {_bg_color_pressed};
 }}
 '''
@@ -41,7 +44,7 @@ QPushButton:pressed {{
 # ///////////////////////////////////////////////////////////////
 class PyPushButton(QPushButton):
     def __init__(
-        self, 
+        self,
         text,
         radius,
         color,
@@ -68,4 +71,3 @@ class PyPushButton(QPushButton):
         )
         self.setStyleSheet(custom_style)
 
-        

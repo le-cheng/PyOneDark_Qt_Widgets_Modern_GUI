@@ -19,7 +19,12 @@
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import *
+# from qt_core import *、
+from PySide6.QtWidgets import QFrame, QHBoxLayout
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QColor
+from PySide6.QtWidgets import QGraphicsDropShadowEffect
+
 
 # IMPORT SETTINGS
 # ///////////////////////////////////////////////////////////////
@@ -67,11 +72,11 @@ class PyWindow(QFrame):
         self.enable_shadow = enable_shadow
 
         # OBJECT NAME
-        # ///////////////////////////////////////////////////////////////   
+        # ///////////////////////////////////////////////////////////////
         self.setObjectName("pod_bg_app")
 
         # APPLY STYLESHEET
-        # /////////////////////////////////////////////////////////////// 
+        # ///////////////////////////////////////////////////////////////
         self.set_stylesheet()
 
         # ADD LAYOUT
@@ -139,4 +144,3 @@ class PyWindow(QFrame):
             _text_color = internal_text_color,
             _text_font = internal_text_font
         ))
-        

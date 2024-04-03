@@ -16,7 +16,9 @@
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import *
+# from qt_core import *
+from PySide6.QtWidgets import QTableWidget
+
 
 # IMPORT STYLE
 # ///////////////////////////////////////////////////////////////
@@ -26,7 +28,7 @@ from . style import *
 # ///////////////////////////////////////////////////////////////
 class PyTableWidget(QTableWidget):
     def __init__(
-        self, 
+        self,
         radius = 8,
         color = "#FFF",
         bg_color = "#444",
@@ -75,7 +77,7 @@ class PyTableWidget(QTableWidget):
     ):
         # APPLY STYLESHEET
         style_format = style.format(
-            _radius = radius,          
+            _radius = radius,
             _color = color,
             _bg_color = bg_color,
             _header_horizontal_color = header_horizontal_color,

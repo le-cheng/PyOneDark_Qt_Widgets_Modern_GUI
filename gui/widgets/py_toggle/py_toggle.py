@@ -16,13 +16,17 @@
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import *
+# from qt_core import *
+from PySide6.QtWidgets import QCheckBox
+from PySide6.QtCore import Property, QRect, QPoint, Qt, QEasingCurve, QPropertyAnimation
+from PySide6.QtGui import QPainter, QColor, QFont
+
 
 class PyToggle(QCheckBox):
     def __init__(
         self,
         width = 50,
-        bg_color = "#777", 
+        bg_color = "#777",
         circle_color = "#DDD",
         active_color = "#00BCFF",
         animation_curve = QEasingCurve.OutBounce
@@ -59,7 +63,7 @@ class PyToggle(QCheckBox):
         else:
             self.animation.setEndValue(4)
         self.animation.start()
-    
+
     def hitButton(self, pos: QPoint):
         return self.contentsRect().contains(pos)
 
@@ -72,7 +76,7 @@ class PyToggle(QCheckBox):
         p.setPen(Qt.NoPen)
 
         # DRAW RECT
-        rect = QRect(0, 0, self.width(), self.height())        
+        rect = QRect(0, 0, self.width(), self.height())
 
         if not self.isChecked():
             p.setBrush(QColor(self._bg_color))

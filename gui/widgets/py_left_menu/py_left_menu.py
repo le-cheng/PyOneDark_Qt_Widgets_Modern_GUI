@@ -16,7 +16,10 @@
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import *
+# from qt_core import *
+from PySide6.QtWidgets import QWidget, QFrame, QPushButton, QVBoxLayout
+from PySide6.QtCore import Qt, Signal, QEasingCurve, QPropertyAnimation
+
 
 # IMPORT BUTTON AND DIV
 # ///////////////////////////////////////////////////////////////
@@ -93,8 +96,8 @@ class PyLeftMenu(QWidget):
         # TOGGLE BUTTON AND DIV MENUS
         # ///////////////////////////////////////////////////////////////
         self.toggle_button = PyLeftMenuButton(
-            app_parent, 
-            text = toggle_text, 
+            app_parent,
+            text = toggle_text,
             tooltip_text = toggle_tooltip,
             dark_one = self._dark_one,
             dark_three = self._dark_three,
@@ -169,7 +172,7 @@ class PyLeftMenu(QWidget):
     # ///////////////////////////////////////////////////////////////
     def btn_clicked(self):
         self.clicked.emit(self.menu)
-    
+
     def btn_released(self):
         self.released.emit(self.menu)
 
@@ -260,7 +263,7 @@ class PyLeftMenu(QWidget):
         # ADD BG TO LAYOUT
         self.left_menu_layout.addWidget(self.bg)
 
-        
 
-        
+
+
 

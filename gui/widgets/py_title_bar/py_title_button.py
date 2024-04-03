@@ -16,7 +16,12 @@
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import *
+# from qt_core import *
+from PySide6.QtCore import Qt, QEvent, QRect, QPoint
+from PySide6.QtWidgets import QLabel, QPushButton
+from PySide6.QtGui import QPainter, QBrush, QColor, QPixmap
+from PySide6.QtWidgets import QGraphicsDropShadowEffect
+
 
 # PY TITLE BUTTON
 # ///////////////////////////////////////////////////////////////
@@ -44,7 +49,7 @@ class PyTitleButton(QPushButton):
         is_active = False
     ):
         super().__init__()
-        
+
         # SET DEFAULT PARAMETERS
         self.setFixedSize(width, height)
         self.setCursor(Qt.PointingHandCursor)
@@ -53,7 +58,7 @@ class PyTitleButton(QPushButton):
         # PROPERTIES
         self._bg_color = bg_color
         self._bg_color_hover = bg_color_hover
-        self._bg_color_pressed = bg_color_pressed        
+        self._bg_color_pressed = bg_color_pressed
         self._icon_color = icon_color
         self._icon_color_hover = icon_color_hover
         self._icon_color_pressed = icon_color_pressed
@@ -100,7 +105,7 @@ class PyTitleButton(QPushButton):
         paint = QPainter()
         paint.begin(self)
         paint.setRenderHint(QPainter.RenderHint.Antialiasing)
-        
+
         if self._is_active:
             # BRUSH
             brush = QBrush(QColor(self._context_color))
@@ -113,8 +118,8 @@ class PyTitleButton(QPushButton):
         paint.setPen(Qt.NoPen)
         paint.setBrush(brush)
         paint.drawRoundedRect(
-            rect, 
-            self._set_border_radius, 
+            rect,
+            self._set_border_radius,
             self._set_border_radius
         )
 
@@ -131,12 +136,12 @@ class PyTitleButton(QPushButton):
         if event == QEvent.Enter:
             self._set_bg_color = self._bg_color_hover
             self._set_icon_color = self._icon_color_hover
-            self.repaint()         
+            self.repaint()
         elif event == QEvent.Leave:
             self._set_bg_color = self._bg_color
             self._set_icon_color = self._icon_color
             self.repaint()
-        elif event == QEvent.MouseButtonPress:            
+        elif event == QEvent.MouseButtonPress:
             self._set_bg_color = self._bg_color_pressed
             self._set_icon_color = self._icon_color_pressed
             self.repaint()
@@ -192,10 +197,10 @@ class PyTitleButton(QPushButton):
         else:
             painter.fillRect(icon.rect(), self._set_icon_color)
         qp.drawPixmap(
-            (rect.width() - icon.width()) / 2, 
+            (rect.width() - icon.width()) / 2,
             (rect.height() - icon.height()) / 2,
             icon
-        )        
+        )
         painter.end()
 
     # SET ICON
@@ -227,9 +232,9 @@ class PyTitleButton(QPushButton):
 # ///////////////////////////////////////////////////////////////
 class _ToolTip(QLabel):
     # TOOLTIP / LABEL StyleSheet
-    style_tooltip = """ 
-    QLabel {{		
-        background-color: {_dark_one};	
+    style_tooltip = """
+    QLabel {{
+        background-color: {_dark_one};
         color: {_text_foreground};
         padding-left: 10px;
         padding-right: 10px;
@@ -241,7 +246,7 @@ class _ToolTip(QLabel):
     """
     def __init__(
         self,
-        parent, 
+        parent,
         tooltip,
         dark_one,
         context_color,

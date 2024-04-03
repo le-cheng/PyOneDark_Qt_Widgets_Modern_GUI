@@ -16,7 +16,10 @@
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import *
+# from qt_core import *
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QLabel, QWidget, QFrame, QHBoxLayout, QSpacerItem, QSizePolicy
+
 
 # PY CREDITS BAR AND VERSION
 # ///////////////////////////////////////////////////////////////

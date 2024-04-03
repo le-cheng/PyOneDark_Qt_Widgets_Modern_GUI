@@ -16,7 +16,9 @@
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import *
+# from qt_core import *
+from PySide6.QtWidgets import QLabel, QVBoxLayout, QWidget, QHBoxLayout, QFrame
+from PySide6.QtCore import Qt, Signal
 
 # IMPORT CLOSE BUTTON
 # ///////////////////////////////////////////////////////////////
@@ -91,7 +93,7 @@ class PyLeftColumn(QWidget):
     # ///////////////////////////////////////////////////////////////
     def btn_clicked(self):
         self.clicked.emit(self.btn_close)
-    
+
     def btn_released(self):
         self.released.emit(self.btn_close)
 
@@ -109,7 +111,7 @@ class PyLeftColumn(QWidget):
         self.title_frame.setMaximumHeight(47)
         self.title_frame.setMinimumHeight(47)
 
-        # TITLE BASE LAYOUT 
+        # TITLE BASE LAYOUT
         self.title_base_layout = QVBoxLayout(self.title_frame)
         self.title_base_layout.setContentsMargins(5,3,5,3)
 

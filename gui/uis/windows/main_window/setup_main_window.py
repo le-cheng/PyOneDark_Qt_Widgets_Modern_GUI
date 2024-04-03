@@ -23,7 +23,12 @@ import os
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import *
+# from qt_core import *
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QIcon
+from PySide6.QtWidgets import QTableWidgetItem, QAbstractItemView, QHeaderView, QTableWidgetItem
+from PySide6.QtSvgWidgets import QSvgWidget
+
 
 # IMPORT SETTINGS
 # ///////////////////////////////////////////////////////////////
@@ -41,7 +46,7 @@ from gui.widgets import *
 # ///////////////////////////////////////////////////////////////
 from . ui_main import *
 
-# MAIN FUNCTIONS 
+# MAIN FUNCTIONS
 # ///////////////////////////////////////////////////////////////
 from . functions_main_window import *
 
@@ -122,6 +127,14 @@ class SetupMainWindow:
             "btn_tooltip" : "Open settings",
             "show_top" : False,
             "is_active" : False
+        },
+        {
+            "btn_icon" : "icon_attachment.svg",
+            "btn_id" : "btn_serial_port",
+            "btn_text" : "Show Serial Port",
+            "btn_tooltip" : "Show serial port",
+            "show_top" : True,
+            "is_active" : False
         }
     ]
 
@@ -159,7 +172,7 @@ class SetupMainWindow:
         # APP TITLE
         # ///////////////////////////////////////////////////////////////
         self.setWindowTitle(self.settings["app_name"])
-        
+
         # REMOVE TITLE BAR
         # ///////////////////////////////////////////////////////////////
         if self.settings["custom_title_bar"]:

@@ -20,7 +20,8 @@ from gui.core.functions import Functions
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import QWidget, QVBoxLayout, QFrame, QHBoxLayout
+# from qt_core import QWidget, QVBoxLayout, QFrame, QHBoxLayout
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QFrame, QHBoxLayout
 
 # IMPORT SETTINGS
 # ///////////////////////////////////////////////////////////////
@@ -84,7 +85,7 @@ class UI_MainWindow(object):
             self.central_widget_layout.setContentsMargins(10,10,10,10)
         else:
             self.central_widget_layout.setContentsMargins(0,0,0,0)
-        
+
         # LOAD PY WINDOW CUSTOM WIDGET
         # Add inside PyWindow "layout" all Widgets
         # ///////////////////////////////////////////////////////////////
@@ -94,11 +95,11 @@ class UI_MainWindow(object):
             border_color = self.themes["app_color"]["bg_two"],
             text_color = self.themes["app_color"]["text_foreground"]
         )
-        
+
         # If disable custom title bar
         if not self.settings["custom_title_bar"]:
             self.window.set_stylesheet(border_radius = 0, border_size = 0)
-        
+
         # ADD PY WINDOW TO CENTRAL WIDGET
         self.central_widget_layout.addWidget(self.window)
 
@@ -190,7 +191,7 @@ class UI_MainWindow(object):
         self.title_bar_frame.setMaximumHeight(40)
         self.title_bar_layout = QVBoxLayout(self.title_bar_frame)
         self.title_bar_layout.setContentsMargins(0,0,0,0)
-        
+
         # ADD CUSTOM TITLE BAR TO LAYOUT
         self.title_bar = PyTitleBar(
             parent,
@@ -292,7 +293,7 @@ class UI_MainWindow(object):
         self.right_app_layout.addWidget(self.title_bar_frame)
         self.right_app_layout.addWidget(self.content_area_frame)
         self.right_app_layout.addWidget(self.credits_frame)
-        
+
         # ADD WIDGETS TO "PyWindow"
         # Add here your custom widgets or default widgets
         # ///////////////////////////////////////////////////////////////

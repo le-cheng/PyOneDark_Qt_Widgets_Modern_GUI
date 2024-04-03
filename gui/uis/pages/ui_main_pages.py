@@ -16,7 +16,12 @@
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import *
+# from qt_core import *
+from PySide6.QtWidgets import QVBoxLayout, QStackedWidget, QWidget, QLabel, QFrame, QScrollArea, QFrame, QLabel, QHBoxLayout
+from PySide6.QtCore import Qt, QSize, QRect, QMetaObject, QCoreApplication
+from PySide6.QtGui import QFont
+
+
 
 
 class Ui_MainPages(object):

@@ -20,7 +20,13 @@ import os
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import *
+# from qt_core import *
+from PySide6.QtCore import Qt, QRect, QEvent, QPoint
+from PySide6.QtWidgets import QPushButton, QLabel, QGraphicsDropShadowEffect
+from PySide6.QtGui import QPainter, QColor, QPixmap
+
+
+
 
 # IMPORT FUNCTIONS
 # ///////////////////////////////////////////////////////////////
@@ -134,7 +140,7 @@ class PyLeftMenuButton(QPushButton):
             p.drawText(rect_text, Qt.AlignVCenter, self.text())
 
             # DRAW ICONS
-            self.icon_paint(p, self._icon_path, rect_icon, self._set_icon_color) 
+            self.icon_paint(p, self._icon_path, rect_icon, self._set_icon_color)
 
         elif self._is_active_tab:
             # DRAW BG BLUE
@@ -185,7 +191,7 @@ class PyLeftMenuButton(QPushButton):
                 p.drawText(rect_text, Qt.AlignVCenter, self.text())
 
                 # DRAW ICONS
-                self.icon_paint(p, self._icon_path, rect_icon, self._set_icon_color)        
+                self.icon_paint(p, self._icon_path, rect_icon, self._set_icon_color)
 
         p.end()
 
@@ -206,7 +212,7 @@ class PyLeftMenuButton(QPushButton):
         if not is_active:
             self._set_icon_color = self._icon_color
             self._set_bg_color = self._dark_one
-            
+
         self.repaint()
 
     # RETURN IF IS ACTIVE MENU
@@ -218,7 +224,7 @@ class PyLeftMenuButton(QPushButton):
     # ///////////////////////////////////////////////////////////////
     def is_active_tab(self):
         return self._is_active_tab
-    
+
     # SET ACTIVE TOGGLE
     # ///////////////////////////////////////////////////////////////
     def set_active_toggle(self, is_active):
@@ -238,10 +244,10 @@ class PyLeftMenuButton(QPushButton):
         painter.setCompositionMode(QPainter.CompositionMode_SourceIn)
         painter.fillRect(icon.rect(), color)
         qp.drawPixmap(
-            (rect.width() - icon.width()) / 2, 
+            (rect.width() - icon.width()) / 2,
             (rect.height() - icon.height()) / 2,
             icon
-        )        
+        )
         painter.end()
 
     # DRAW ACTIVE ICON / RIGHT SIDE
@@ -262,23 +268,23 @@ class PyLeftMenuButton(QPushButton):
             if not self._is_active:
                 self._set_icon_color = self._icon_color_hover
                 self._set_bg_color = self._dark_three
-            self.repaint()          
+            self.repaint()
         elif event == QEvent.Leave:
             if not self._is_active:
                 self._set_icon_color = self._icon_color
                 self._set_bg_color = self._dark_one
             self.repaint()
         elif event == QEvent.MouseButtonPress:
-            if not self._is_active:         
+            if not self._is_active:
                 self._set_icon_color = self._context_color
                 self._set_bg_color = self._dark_four
-            self.repaint()  
+            self.repaint()
         elif event == QEvent.MouseButtonRelease:
             if not self._is_active:
                 self._set_icon_color = self._icon_color_hover
                 self._set_bg_color = self._dark_three
             self.repaint()
-    
+
     # MOUSE OVER
     # Event triggered when the mouse is over the BTN
     # ///////////////////////////////////////////////////////////////
@@ -329,13 +335,13 @@ class PyLeftMenuButton(QPushButton):
 
         # SET POSITION TO WIDGET
         # Move tooltip position
-        self.tooltip.move(pos_x, pos_y) 
+        self.tooltip.move(pos_x, pos_y)
 
 class _ToolTip(QLabel):
     # TOOLTIP / LABEL StyleSheet
-    style_tooltip = """ 
-    QLabel {{		
-        background-color: {_dark_one};	
+    style_tooltip = """
+    QLabel {{
+        background-color: {_dark_one};
         color: {_text_foreground};
         padding-left: 10px;
         padding-right: 10px;
@@ -348,7 +354,7 @@ class _ToolTip(QLabel):
 
     def __init__(
         self,
-        parent, 
+        parent,
         tooltip,
         dark_one,
         context_color,
@@ -377,4 +383,4 @@ class _ToolTip(QLabel):
         self.shadow.setColor(QColor(0, 0, 0, 80))
         self.setGraphicsEffect(self.shadow)
 
-    
+

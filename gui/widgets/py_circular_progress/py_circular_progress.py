@@ -16,7 +16,10 @@
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import *
+# from qt_core import *
+from PySide6.QtCore import Qt, QRect
+from PySide6.QtGui import QPainter, QPen, QColor, QFont
+from PySide6.QtWidgets import QWidget, QGraphicsDropShadowEffect
 
 class PyCircularProgress(QWidget):
     def __init__(
@@ -87,7 +90,7 @@ class PyCircularProgress(QWidget):
         paint.setPen(Qt.NoPen)
 
         # PEN
-        pen = QPen()             
+        pen = QPen()
         pen.setWidth(self.progress_width)
         # Set Round Cap
         if self.progress_rounded_cap:
@@ -96,13 +99,13 @@ class PyCircularProgress(QWidget):
         # ENABLE BG
         if self.enable_bg:
             pen.setColor(QColor(self.bg_color))
-            paint.setPen(pen)  
-            paint.drawArc(margin, margin, width, height, 0, 360 * 16) 
+            paint.setPen(pen)
+            paint.drawArc(margin, margin, width, height, 0, 360 * 16)
 
         # CREATE ARC / CIRCULAR PROGRESS
         pen.setColor(QColor(self.progress_color))
-        paint.setPen(pen)      
-        paint.drawArc(margin, margin, width, height, -90 * 16, -value * 16)       
+        paint.setPen(pen)
+        paint.drawArc(margin, margin, width, height, -90 * 16, -value * 16)
 
         # CREATE TEXT
         if self.enable_text:

@@ -16,7 +16,8 @@
 
 # IMPORT QT CORE
 # ///////////////////////////////////////////////////////////////
-from qt_core import *
+# from qt_core import *
+from PySide6.QtWidgets import QSlider
 
 style = """
 /* HORIZONTAL */
