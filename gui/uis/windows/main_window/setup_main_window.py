@@ -160,7 +160,7 @@ class SetupMainWindow:
     # ///////////////////////////////////////////////////////////////
     def setup_btns(self):
         if self.ui.title_bar.sender() != None:
-            return self.ui.title_bar.sender()
+            return self.ui.title_bar.sender() # self.ui.title_bar 是一个对象，它有一个名为 sender() 的方法。当 title_bar 发出信号时，sender() 方法将返回 title_bar 对象。
         elif self.ui.left_menu.sender() != None:
             return self.ui.left_menu.sender()
         elif self.ui.left_column.sender() != None:

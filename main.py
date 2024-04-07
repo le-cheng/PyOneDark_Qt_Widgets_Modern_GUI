@@ -64,6 +64,7 @@ class MainWindow(QMainWindow):
     # LEFT MENU BTN IS CLICKED
     # Run function when btn is clicked
     # Check funtion by object name / btn_id
+    # setup_main_window 200行
     def btn_clicked(self):
         # GET BT CLICKED
         btn = SetupMainWindow.setup_btns(self)
@@ -93,6 +94,12 @@ class MainWindow(QMainWindow):
 
             # Load Page 2
             MainFunctions.set_page(self, self.ui.load_pages.page_2)
+
+        # btn_serial_port
+        if btn.objectName() == "btn_serial_port":
+            self.ui.left_menu.select_only_one(btn.objectName())
+            # Load Page 2
+            MainFunctions.set_page(self, self.ui.load_pages.page_3)
 
         # LOAD USER PAGE
         if btn.objectName() == "btn_add_user":

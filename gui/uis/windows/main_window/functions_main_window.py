@@ -27,8 +27,8 @@ from PySide6.QtCore import QPropertyAnimation
 
 
 # LOAD UI MAIN
-# ///////////////////////////////////////////////////////////////
-from . ui_main import *
+# from . ui_main import *
+from . ui_main import UI_MainWindow
 
 # FUNCTIONS
 class MainFunctions():
@@ -36,7 +36,6 @@ class MainFunctions():
         super().__init__()
         # SETUP MAIN WINDOw
         # Load widgets from "gui\uis\main_window\ui_main.py"
-        # ///////////////////////////////////////////////////////////////
         self.ui = UI_MainWindow()
         self.ui.setup_ui(self)
 

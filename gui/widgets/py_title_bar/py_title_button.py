@@ -18,13 +18,11 @@
 # ///////////////////////////////////////////////////////////////
 # from qt_core import *
 from PySide6.QtCore import Qt, QEvent, QRect, QPoint
-from PySide6.QtWidgets import QLabel, QPushButton
+from PySide6.QtWidgets import QLabel, QPushButton, QGraphicsDropShadowEffect
 from PySide6.QtGui import QPainter, QBrush, QColor, QPixmap
-from PySide6.QtWidgets import QGraphicsDropShadowEffect
 
 
 # PY TITLE BUTTON
-# ///////////////////////////////////////////////////////////////
 class PyTitleButton(QPushButton):
     def __init__(
         self,
@@ -87,33 +85,31 @@ class PyTitleButton(QPushButton):
         self._tooltip.hide()
 
     # SET ACTIVE MENU
-    # ///////////////////////////////////////////////////////////////
     def set_active(self, is_active):
         self._is_active = is_active
-        self.repaint()
+        self.repaint() # 触发类的重绘方法，从而更新界面的显示状态。self.repaint() 仅强制小部件重新绘制其内容。
+        # 它不会强制小部件重新绘制其子小部件。如果您需要重新绘制子小部件，则需要显式调用它们的 repaint() 方法。
 
     # RETURN IF IS ACTIVE MENU
-    # ///////////////////////////////////////////////////////////////
     def is_active(self):
         return self._is_active
 
     # PAINT EVENT
     # painting the button and the icon
-    # ///////////////////////////////////////////////////////////////
+    # paintEvent 是一个事件处理程序，当小部件需要绘制其内容时调用。它由 Qt 框架自动调用，您通常不需要直接调用它。
+    # 在 paintEvent 中，您可以使用 QPainter 对象来绘制小部件的内容。QPainter 提供了许多用于绘制形状、文本和图像的方法。
     def paintEvent(self, event):
         # PAINTER
         paint = QPainter()
-        paint.begin(self)
-        paint.setRenderHint(QPainter.RenderHint.Antialiasing)
+        paint.begin(self) # 创建 QPainter 对象
+        paint.setRenderHint(QPainter.RenderHint.Antialiasing) # 这将启用抗锯齿，从而使绘制的图形边缘更平滑。
 
-        if self._is_active:
-            # BRUSH
+        if self._is_active: # 设置画笔, 如果小部件处于活动状态，则使用 self._context_color，否则使用 self._set_bg_color。
             brush = QBrush(QColor(self._context_color))
         else:
-            # BRUSH
             brush = QBrush(QColor(self._set_bg_color))
 
-        # CREATE RECTANGLE
+        # CREATE RECTANGLE 创建一个矩形，其大小与小部件的大小相同。
         rect = QRect(0, 0, self.width(), self.height())
         paint.setPen(Qt.NoPen)
         paint.setBrush(brush)
@@ -121,17 +117,15 @@ class PyTitleButton(QPushButton):
             rect,
             self._set_border_radius,
             self._set_border_radius
-        )
+        ) # 使用指定的画笔和圆角半径绘制一个圆角矩形。
 
-        # DRAW ICONS
+        # DRAW ICONS 调用 icon_paint 方法来绘制图标。
         self.icon_paint(paint, self._set_icon_path, rect)
 
-        # END PAINTER
-        paint.end()
+        paint.end() # END PAINTER
 
     # CHANGE STYLES
     # Functions with custom styles
-    # ///////////////////////////////////////////////////////////////
     def change_style(self, event):
         if event == QEvent.Enter:
             self._set_bg_color = self._bg_color_hover
@@ -152,15 +146,13 @@ class PyTitleButton(QPushButton):
 
     # MOUSE OVER
     # Event triggered when the mouse is over the BTN
-    # ///////////////////////////////////////////////////////////////
-    def enterEvent(self, event):
+    def enterEvent(self, event): # 一个事件处理程序，当鼠标光标进入小部件时调用。它由 Qt 框架自动调用，您通常不需要直接调用它。
         self.change_style(QEvent.Enter)
         self.move_tooltip()
         self._tooltip.show()
 
     # MOUSE LEAVE
     # Event fired when the mouse leaves the BTN
-    # ///////////////////////////////////////////////////////////////
     def leaveEvent(self, event):
         self.change_style(QEvent.Leave)
         self.move_tooltip()
@@ -168,7 +160,6 @@ class PyTitleButton(QPushButton):
 
     # MOUSE PRESS
     # Event triggered when the left button is pressed
-    # ///////////////////////////////////////////////////////////////
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
             self.change_style(QEvent.MouseButtonPress)
@@ -179,7 +170,6 @@ class PyTitleButton(QPushButton):
 
     # MOUSE RELEASED
     # Event triggered after the mouse button is released
-    # ///////////////////////////////////////////////////////////////
     def mouseReleaseEvent(self, event):
         if event.button() == Qt.LeftButton:
             self.change_style(QEvent.MouseButtonRelease)
@@ -187,7 +177,6 @@ class PyTitleButton(QPushButton):
             return self.released.emit()
 
     # DRAW ICON WITH COLORS
-    # ///////////////////////////////////////////////////////////////
     def icon_paint(self, qp, image, rect):
         icon = QPixmap(image)
         painter = QPainter(icon)
@@ -210,7 +199,6 @@ class PyTitleButton(QPushButton):
         self.repaint()
 
     # MOVE TOOLTIP
-    # ///////////////////////////////////////////////////////////////
     def move_tooltip(self):
         # GET MAIN WINDOW PARENT
         gp = self.mapToGlobal(QPoint(0, 0))
@@ -229,7 +217,6 @@ class PyTitleButton(QPushButton):
         self._tooltip.move(pos_x, pos_y)
 
 # TOOLTIP
-# ///////////////////////////////////////////////////////////////
 class _ToolTip(QLabel):
     # TOOLTIP / LABEL StyleSheet
     style_tooltip = """

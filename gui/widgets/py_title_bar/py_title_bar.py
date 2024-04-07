@@ -206,7 +206,6 @@ class PyTitleBar(QWidget):
                 self.custom_buttons_layout.addWidget(self.div_3)
 
     # TITLE BAR MENU EMIT SIGNALS
-    # ///////////////////////////////////////////////////////////////
     def btn_clicked(self):
         self.clicked.emit(self.menu)
 
