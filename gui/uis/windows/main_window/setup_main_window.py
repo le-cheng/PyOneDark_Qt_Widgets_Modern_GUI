@@ -1,28 +1,11 @@
-# ///////////////////////////////////////////////////////////////
-#
-# BY: WANDERSON M.PIMENTA
-# PROJECT MADE WITH: Qt Designer and PySide6
-# V: 1.0.0
-#
-# This project can be used freely for all uses, as long as they maintain the
-# respective credits only in the Python scripts, any information in the visual
-# interface (GUI) can be modified without any implication.
-#
-# There are limitations on Qt licenses if you want to use your products
-# commercially, I recommend reading them on the official website:
-# https://doc.qt.io/qtforpython/licenses.html
-#
-# ///////////////////////////////////////////////////////////////
 
 # IMPORT PACKAGES AND MODULES
-# ///////////////////////////////////////////////////////////////
 from gui.widgets.py_table_widget.py_table_widget import PyTableWidget
 from . functions_main_window import *
 import sys
 import os
 
 # IMPORT QT CORE
-# ///////////////////////////////////////////////////////////////
 # from qt_core import *
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QIcon
@@ -57,12 +40,10 @@ class SetupMainWindow:
         super().__init__()
         # SETUP MAIN WINDOw
         # Load widgets from "gui\uis\main_window\ui_main.py"
-        # ///////////////////////////////////////////////////////////////
         self.ui = UI_MainWindow()
-        self.ui.setup_ui(self)
+        # self.ui.setup_ui(self)
 
     # ADD LEFT MENUS
-    # ///////////////////////////////////////////////////////////////
     add_left_menus = [
         {
             "btn_icon" : "icon_home.svg",
@@ -139,7 +120,6 @@ class SetupMainWindow:
     ]
 
      # ADD TITLE BAR MENUS
-    # ///////////////////////////////////////////////////////////////
     add_title_bar_menus = [
         {
             "btn_icon" : "icon_search.svg",
@@ -167,20 +147,16 @@ class SetupMainWindow:
             return self.ui.left_column.sender()
 
     # SETUP MAIN WINDOW WITH CUSTOM PARAMETERS
-    # ///////////////////////////////////////////////////////////////
     def setup_gui(self):
         # APP TITLE
-        # ///////////////////////////////////////////////////////////////
         self.setWindowTitle(self.settings["app_name"])
 
         # REMOVE TITLE BAR
-        # ///////////////////////////////////////////////////////////////
         if self.settings["custom_title_bar"]:
             self.setWindowFlag(Qt.FramelessWindowHint)
             self.setAttribute(Qt.WA_TranslucentBackground)
 
         # ADD GRIPS
-        # ///////////////////////////////////////////////////////////////
         if self.settings["custom_title_bar"]:
             self.left_grip = PyGrips(self, "left", self.hide_grips)
             self.right_grip = PyGrips(self, "right", self.hide_grips)
@@ -192,7 +168,6 @@ class SetupMainWindow:
             self.bottom_right_grip = PyGrips(self, "bottom_right", self.hide_grips)
 
         # LEFT MENUS / GET SIGNALS WHEN LEFT MENU BTN IS CLICKED / RELEASED
-        # ///////////////////////////////////////////////////////////////
         # ADD MENUS
         self.ui.left_menu.add_menus(SetupMainWindow.add_left_menus)
 
@@ -231,6 +206,9 @@ class SetupMainWindow:
         )
         MainFunctions.set_right_column_menu(self, self.ui.right_column.menu_1)
 
+        # ADD CUSTOM PAGE WIDGETS
+        self.ui.load_pages.pages.addWidget(self.page_sp_widget)
+
         # ///////////////////////////////////////////////////////////////
         # EXAMPLE CUSTOM WIDGETS
         # Here are added the custom widgets to pages and columns that
@@ -247,15 +225,33 @@ class SetupMainWindow:
         # RIGHT COLUMN: self.ui.right_column
         # LOAD PAGES: self.ui.load_pages
         # </OBJECTS>
+
+        # 自定义小部件示例
+        # 这里添加了使用Qt Designer创建的自定义小部件到页面和列中。
+        # 这只是一个示例，在创建您的应用程序时应删除。
+
+        # 加载页面、左侧和右侧列的对象
+        # 您可以使用下面的对象来访问Qt Designer项目内部的对象：
+        # <OBJECTS>
+        # LEFT COLUMN: self.ui.left_column.menus
+        # RIGHT COLUMN: self.ui.right_column
+        # LOAD PAGES: self.ui.load_pages
+        # </OBJECTS>
         # ///////////////////////////////////////////////////////////////
 
         # LOAD SETTINGS
         # ///////////////////////////////////////////////////////////////
         settings = Settings()
         self.settings = settings.items
+        # print(settings.items)
+        # {'app_name': 'PyOneDark - Modern GUI', 'version': 'v1.0.0', 'copyright': 'By: Le',
+        # 'year': 2024, 'theme_name': 'default', 'custom_title_bar': True, 'startup_size': [1400, 720],
+        # 'minimum_size': [960, 540], 'lef_menu_size': {'minimum': 50, 'maximum': 240},
+        # 'left_menu_content_margins': 3, 'left_column_size': {'minimum': 0, 'maximum': 240},
+        # 'right_column_size': {'minimum': 0, 'maximum': 240}, 'time_animation': 500,
+        # 'font': {'family': 'Segoe UI', 'title_size': 10, 'text_size': 9}}
 
         # LOAD THEME COLOR
-        # ///////////////////////////////////////////////////////////////
         themes = Themes()
         self.themes = themes.items
 
@@ -296,7 +292,7 @@ class SetupMainWindow:
         # PAGES
         # ///////////////////////////////////////////////////////////////
 
-        # PAGE 1 - ADD LOGO TO MAIN PAGE
+        # PAGE 1 - ADD LOGO TO MAIN PAGE 中心大logo
         self.logo_svg = QSvgWidget(Functions.set_svg_image("logo_home.svg"))
         self.ui.load_pages.logo_layout.addWidget(self.logo_svg, Qt.AlignCenter, Qt.AlignCenter)
 

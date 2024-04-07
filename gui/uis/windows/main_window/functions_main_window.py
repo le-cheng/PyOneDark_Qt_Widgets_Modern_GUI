@@ -37,15 +37,13 @@ class MainFunctions():
         # SETUP MAIN WINDOw
         # Load widgets from "gui\uis\main_window\ui_main.py"
         self.ui = UI_MainWindow()
-        self.ui.setup_ui(self)
+        # self.ui.setup_ui(self)
 
     # SET MAIN WINDOW PAGES
-    # ///////////////////////////////////////////////////////////////
     def set_page(self, page):
         self.ui.load_pages.pages.setCurrentWidget(page)
 
     # SET LEFT COLUMN PAGES
-    # ///////////////////////////////////////////////////////////////
     def set_left_column_menu(
         self,
         menu,

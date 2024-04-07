@@ -52,19 +52,16 @@ from gui.uis.columns.ui_right_column import Ui_RightColumn
 from gui.widgets.py_credits_bar.py_credits import PyCredits
 
 # PY WINDOW
-# ///////////////////////////////////////////////////////////////
 class UI_MainWindow(object):
     def setup_ui(self, parent):
         if not parent.objectName():
             parent.setObjectName("MainWindow")
 
         # LOAD SETTINGS
-        # ///////////////////////////////////////////////////////////////
         settings = Settings()
         self.settings = settings.items
 
         # LOAD THEME COLOR
-        # ///////////////////////////////////////////////////////////////
         themes = Themes()
         self.themes = themes.items
 
@@ -265,12 +262,11 @@ class UI_MainWindow(object):
         self.content_area_layout.addWidget(self.right_column_frame)
 
         # CREDITS / BOTTOM APP FRAME
-        # ///////////////////////////////////////////////////////////////
         self.credits_frame = QFrame()
         self.credits_frame.setMinimumHeight(26)
         self.credits_frame.setMaximumHeight(26)
 
-        # CREATE LAYOUT
+        # CREATE LAYOUT 底部字幕栏
         self.credits_layout = QVBoxLayout(self.credits_frame)
         self.credits_layout.setContentsMargins(0,0,0,0)
 

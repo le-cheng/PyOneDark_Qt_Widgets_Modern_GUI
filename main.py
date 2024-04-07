@@ -21,13 +21,15 @@ import os
 # IMPORT QT CORE
 # from qt_core import QMainWindow, QApplication, QIcon
 from PySide6.QtGui import QIcon
-from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtWidgets import QApplication, QMainWindow, QWidget
 
 # IMPORT SETTINGS
 from gui.core.json_settings import Settings
 
 # IMPORT PY ONE DARK WINDOWS
 # MAIN WINDOW
+from gui.uis.pages.uiMainWin_ui import Ui_MainWindow
+from gui.uis.pages.ui_serial_port import Ui_Form
 from gui.uis.windows.main_window import UI_MainWindow, SetupMainWindow, MainFunctions
 
 # IMPORT PY ONE DARK WIDGETS
@@ -53,18 +55,23 @@ class MainWindow(QMainWindow):
         settings = Settings()
         self.settings = settings.items
 
+        # ADD CUSTOM PAGE WIDGETS
+        self.page_sp_widget = QWidget()
+        self.page_sp_widget.setObjectName(u"page_sp_widget")
+        self.page_sp = Ui_Form()
+        self.page_sp.setupUi(self.page_sp_widget)
+
         # SETUP MAIN WINDOW
         self.hide_grips = True # Show/Hide resize grips
         SetupMainWindow.setup_gui(self)
 
         # SHOW MAIN WINDOW
-        # ///////////////////////////////////////////////////////////////
         self.show()
 
     # LEFT MENU BTN IS CLICKED
     # Run function when btn is clicked
     # Check funtion by object name / btn_id
-    # setup_main_window 200行
+    # setup_main_window 175 - 200行
     def btn_clicked(self):
         # GET BT CLICKED
         btn = SetupMainWindow.setup_btns(self)
@@ -99,7 +106,7 @@ class MainWindow(QMainWindow):
         if btn.objectName() == "btn_serial_port":
             self.ui.left_menu.select_only_one(btn.objectName())
             # Load Page 2
-            MainFunctions.set_page(self, self.ui.load_pages.page_3)
+            MainFunctions.set_page(self, self.page_sp_widget)
 
         # LOAD USER PAGE
         if btn.objectName() == "btn_add_user":

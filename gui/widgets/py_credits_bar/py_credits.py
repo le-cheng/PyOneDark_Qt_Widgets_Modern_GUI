@@ -22,7 +22,6 @@ from PySide6.QtWidgets import QLabel, QWidget, QFrame, QHBoxLayout, QSpacerItem,
 
 
 # PY CREDITS BAR AND VERSION
-# ///////////////////////////////////////////////////////////////
 class PyCredits(QWidget):
     def __init__(
         self,
@@ -79,20 +78,37 @@ class PyCredits(QWidget):
 
         # ADD BG LAYOUT
         self.bg_layout = QHBoxLayout(self.bg_frame)
-        self.bg_layout.setContentsMargins(0,0,0,0)
+        self.bg_layout.setContentsMargins(0,0,0,0) # 小部件内容的边距
 
         # ADD COPYRIGHT TEXT
         self.copyright_label = QLabel(self._copyright)
         self.copyright_label.setAlignment(Qt.AlignVCenter)
+        # 对齐方式是对齐方式的标志，可以是以下值之一：
+        # Qt.AlignLeft：左对齐
+        # Qt.AlignRight：右对齐
+        # Qt.AlignHCenter：水平居中
+        # Qt.AlignJustify：两端对齐
+        # Qt.AlignTop：顶部对齐
+        # Qt.AlignBottom：底部对齐
+        # Qt.AlignVCenter：垂直居中
 
         # ADD VERSION TEXT
         self.version_label = QLabel(self._version)
         self.version_label.setAlignment(Qt.AlignVCenter)
 
-        # SEPARATOR
-        self.separator = QSpacerItem(20, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        # # SEPARATOR 使用PySide6创建了一个水平分隔符，并将它添加到一个布局中。
+        # self.separator = QSpacerItem(20, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        # ADD TO LAYOUT
-        self.bg_layout.addWidget(self.copyright_label)
-        self.bg_layout.addSpacerItem(self.separator)
-        self.bg_layout.addWidget(self.version_label)
+        # # ADD TO LAYOUT
+        # self.bg_layout.addWidget(self.copyright_label)
+        # self.bg_layout.addSpacerItem(self.separator)
+        # self.bg_layout.addWidget(self.version_label)
+
+        # CREATE HORIZONTAL LAYOUT FOR LABELS
+        label_layout = QHBoxLayout()
+        label_layout.addWidget(self.copyright_label)
+        label_layout.addWidget(self.version_label)
+        label_layout.setAlignment(Qt.AlignRight)
+
+        # ADD LABEL LAYOUT TO BG LAYOUT
+        self.bg_layout.addLayout(label_layout)
